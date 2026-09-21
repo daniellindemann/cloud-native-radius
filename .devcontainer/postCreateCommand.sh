@@ -26,3 +26,10 @@ fi
 #   export KUBECONFIG="${KUBECONFIG:+$KUBECONFIG:}$HOME/.kube/kind.yaml"
 #   echo "Kind configuration added to kind.yaml kubeconfig."
 # fi
+
+# start cloud-provider-kind service
+if ! service cloud-provider-kind status >/dev/null 2>&1; then
+  sudo service cloud-provider-kind start
+else
+  echo "cloud-provider-kind service already running."
+fi

@@ -40,13 +40,14 @@
 		},
 		"ghcr.io/devcontainers-extra/features/kubie:1": {
 			"version": "latest"
-		}
+		},
+		"ghcr.io/guiyomh/features/vim:0": {}
 	},
 
 	// Container environment variables. More info: https://containers.dev/feature/container-environment-variables.
 	"containerEnv": {
-		// use newest features for radius
-		"RADIUS_PREVIEW": "true",
+		// // use newest features for radius
+		// "RADIUS_PREVIEW": "true",
 		// Path to the kubeconfig file inside the container
 		"KUBECONFIG": "/dc/.kube/config"
 	},

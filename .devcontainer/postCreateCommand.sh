@@ -5,7 +5,10 @@ script_dir=$(dirname "$0")
 # IS_ARM=$(if [[ $(uname -m) == 'aarch64' || $(uname -m) == "arm64" ]]; then echo true; else echo false; fi)
 
 # fixing writing permissions on the kube volume, otherwise creating kubeconfig will fail with devcontainer user
+echo "Fixing writing permissions on the kube volume ..."
 sudo chown -R "$(id -u):$(id -g)" /dc/.kube
+echo "Creating symbolic link for .kube folder ..."
+ln -s /dc/.kube "$HOME/.kube"
 
 # ensure kind cluster is created
 # do it with post create command, because kind is installed via dev container feature and no available during container build (Dockerfile)

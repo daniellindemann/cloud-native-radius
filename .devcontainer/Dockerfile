@@ -34,4 +34,3 @@ RUN cloud_provider_kind_arch=$(case "$TARGETARCH" in amd64) echo amd64 ;; arm64)
 COPY kind/cloud-provider-kind.init /etc/init.d/cloud-provider-kind
 RUN chmod 0755 /etc/init.d/cloud-provider-kind \
 	&& update-rc.d cloud-provider-kind defaults
-RUN service cloud-provider-kind start

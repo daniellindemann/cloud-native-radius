@@ -20,6 +20,6 @@
 Logs are written to `/var/log/cloud-provider-kind.log`:
 
 ```bash
-sudo tail -f /var/log/cloud-provider-kind.log
+sudo tail -n +1 -f /var/log/cloud-provider-kind.log
 ```
 

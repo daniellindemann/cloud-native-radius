@@ -1,0 +1,25 @@
+root = true
+
+# All files
+[*]
+indent_style = space
+indent_size = 2
+
+# Xml files
+[*.xml]
+indent_size = 2
+
+# yaml files
+[*.yaml, *.yml]
+indent_size = 2
+
+# Bicep files
+[*.bicep]
+indent_size = 2
+
+# markdown files
+[*.md]
+indent_size = 4
+
+[*.ps1]
+indent_size = 4

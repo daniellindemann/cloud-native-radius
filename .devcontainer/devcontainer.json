@@ -1,0 +1,86 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"dockerFile": "Dockerfile",
+	"runArgs": ["--name", "devcontainer_cloud-native-radius"],
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"installBicep": true,
+			"version": "latest",
+			"bicepVersion": "latest"
+		},
+		"ghcr.io/devcontainers/features/powershell:2": {
+			"preserveHistory": true,
+			"version": "latest"
+		},
+		"ghcr.io/stuartleeks/dev-container-features/azure-cli-persistence:0": {},
+		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
+		"ghcr.io/radius-project/devcontainer-features/radcli:0": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-extra/features/kind:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+			"version": "latest",
+			"helm": "latest",
+			"minikube": "latest"
+		},
+		"ghcr.io/devcontainers/features/docker-in-docker:4": {
+			"moby": true,
+			"azureDnsAutoDetection": true,
+			"installDockerBuildx": true,
+			"iptablesSwitchAtRuntime": true,
+			"version": "latest",
+			"dockerDashComposeVersion": "latest"
+		},
+		"ghcr.io/devcontainers-extra/features/kubie:1": {
+			"version": "latest"
+		}
+	},
+
+	// Container environment variables. More info: https://containers.dev/feature/container-environment-variables.
+	"containerEnv": {
+		// use newest features for radius
+		"RADIUS_PREVIEW": "true",
+		// Path to the kubeconfig file inside the container
+		"KUBECONFIG": "/dc/.kube/config"
+	},
+
+	// Mount the kubeconfig file as a volume to persist Kubernetes configuration across container restarts.
+	"mounts": [{
+		"source": "${devcontainerId}-kube",
+		"target": "/dc/.kube",
+		"type": "volume"
+	}],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "bash .devcontainer/postCreateCommand.sh",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-containers",
+				"docker.docker",
+				"redhat.vscode-yaml",
+				"ms-kubernetes-tools.vscode-kubernetes-tools",
+				"ms-kubernetes-tools.kind-vscode",
+				"ms-azuretools.vscode-bicep",
+				"ms-vscode.powershell",
+				"editorconfig.editorconfig"
+			]
+		}
+	},
+
+	// Ensure the right user is set for non-root containers. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "vscode",
+	"containerUser": "vscode"
+}

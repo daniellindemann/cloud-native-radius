@@ -23,3 +23,8 @@ Logs are written to `/var/log/cloud-provider-kind.log`:
 sudo tail -n +1 -f /var/log/cloud-provider-kind.log
 ```
 
+### ngix test
+
+kubectl create deployment --image=nginx --replicas=3 --port=80 nginx
+
+kubectl expose deployment nginx --port=1909 --target-port=80 --type=LoadBalancer

@@ -23,7 +23,7 @@ case "$1" in
   start)
     echo "Starting $NAME..."
     start-stop-daemon --start --background --make-pidfile --pidfile "$PIDFILE" \
-      --startas /bin/sh -- -c "exec $DAEMON >>$LOGFILE 2>&1"
+      --startas /bin/sh -- -c "exec $DAEMON --enable-lb-port-mapping >>$LOGFILE 2>&1"
     ;;
   stop)
     echo "Stopping $NAME..."

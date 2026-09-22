@@ -28,7 +28,7 @@
 		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
 			"version": "latest",
 			"helm": "latest",
-			"minikube": "latest"
+			"minikube": "none"
 		},
 		"ghcr.io/devcontainers/features/docker-in-docker:4": {
 			"moby": true,
@@ -41,15 +41,23 @@
 		"ghcr.io/devcontainers-extra/features/kubie:1": {
 			"version": "latest"
 		},
-		"ghcr.io/guiyomh/features/vim:0": {}
+		"ghcr.io/guiyomh/features/vim:0": {},
+    // the language server for bicep requires dotnet
+		"ghcr.io/devcontainers/features/dotnet:2": {
+			"tabCompletions": true,
+			"version": "10.0",
+      "additionalVersions": "8.0"
+		}
 	},
 
 	// Container environment variables. More info: https://containers.dev/feature/container-environment-variables.
 	"containerEnv": {
 		// // use newest features for radius
-		"RADIUS_PREVIEW": "true",
+		// "RADIUS_PREVIEW": "true",
 		// Path to the kubeconfig file inside the container
-		"KUBECONFIG": "/dc/.kube/config"
+		"KUBECONFIG": "/dc/.kube/config",
+    // Auto start Cloud Provider Kind
+    "POST_CREATE_AUTO_START_CLOUD_PROVIDER_KIND": "false"
 	},
 
 	// Mount the kubeconfig file as a volume to persist Kubernetes configuration across container restarts.
@@ -68,6 +76,9 @@
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
+      "settings": {
+        "dotnetAcquisitionExtension.sharedExistingDotnetPath": "/usr/share/dotnet/dotnet"
+      },
 			"extensions": [
 				"ms-azuretools.vscode-containers",
 				"docker.docker",
@@ -79,9 +90,8 @@
 				"editorconfig.editorconfig"
 			]
 		}
-	},
+	}
 
-	// Ensure the right user is set for non-root containers. More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "vscode",
-	"containerUser": "vscode"
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 }

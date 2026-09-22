@@ -52,12 +52,15 @@
 
 	// Container environment variables. More info: https://containers.dev/feature/container-environment-variables.
 	"containerEnv": {
-		// // use newest features for radius
-		// "RADIUS_PREVIEW": "true",
 		// Path to the kubeconfig file inside the container
 		"KUBECONFIG": "/dc/.kube/config",
     // Auto start Cloud Provider Kind
-    "POST_CREATE_AUTO_START_CLOUD_PROVIDER_KIND": "false"
+    "POST_CREATE_AUTO_START_CLOUD_PROVIDER_KIND": "false",
+    // radius cli search bicep on default path $HOME/.rad/bin/bicep
+    // but it is already installed by dev container feature azure-cli in path /usr/local/bin
+    // therefore we explicitly set the BICEP environment variable to point to that path
+    // because the radius cli relies on the BICEP environment variable to locate the Bicep executable
+    "BICEP": "/usr/local/bin/bicep"
 	},
 
 	// Mount the kubeconfig file as a volume to persist Kubernetes configuration across container restarts.

@@ -14,7 +14,7 @@ ln -s /dc/.kube "$HOME/.kube"
 # do it with post create command, because kind is installed via dev container feature and no available during container build (Dockerfile)
 if ! kind get clusters | grep -q "kind"; then
   echo "Kind cluster not found. Creating..."
-  kind create cluster
+  kind create cluster --config "$script_dir/kind/config.yaml"
 else
   echo "Kind cluster already exists."
 fi

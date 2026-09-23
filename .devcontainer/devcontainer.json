@@ -4,7 +4,11 @@
 	"name": "Ubuntu",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"dockerFile": "Dockerfile",
-	"runArgs": ["--name", "devcontainer_cloud-native-radius"],
+	"runArgs": [
+		"--name", "devcontainer_cloud-native-radius",
+		"--sysctl", "net.ipv6.conf.all.disable_ipv6=1",
+		"--sysctl", "net.ipv6.conf.default.disable_ipv6=1"
+	],
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
@@ -35,6 +39,7 @@
 			"azureDnsAutoDetection": true,
 			"installDockerBuildx": true,
 			"iptablesSwitchAtRuntime": true,
+      "disableIp6tables": true,
 			"version": "latest",
 			"dockerDashComposeVersion": "latest"
 		},
@@ -71,7 +76,11 @@
 	}],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [
+    // Forward HTTP and HTTPS ports for local kind configuration with radius gateway
+    80,
+    443
+  ],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "bash .devcontainer/postCreateCommand.sh",

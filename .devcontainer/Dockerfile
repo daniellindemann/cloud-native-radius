@@ -2,6 +2,11 @@ FROM mcr.microsoft.com/devcontainers/base:resolute
 
 ARG TARGETARCH
 
+# Make shared aliases available to all interactive Bash and Zsh sessions.
+COPY shell/aliases.sh /etc/profile.d/devcontainer-aliases.sh
+RUN printf '%s\n' '[ -f /etc/profile.d/devcontainer-aliases.sh ] && . /etc/profile.d/devcontainer-aliases.sh' >> /etc/bash.bashrc
+RUN printf '%s\n' '[ -f /etc/profile.d/devcontainer-aliases.sh ] && . /etc/profile.d/devcontainer-aliases.sh' >> /etc/zsh/zshrc
+
 # install Azure/kubelogin with latest version
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends curl unzip \

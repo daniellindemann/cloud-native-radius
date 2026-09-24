@@ -1,5 +1,20 @@
 extension radius
 
+/*
+Ensure to register the Azure SQL recipe first:
+
+rad recipe register default \
+  --environment azure \
+  --group azure \
+  --template-kind bicep \
+  --template-path "ghcr.io/radius-project/recipes/azure/sqldatabases:0.60.2" \
+  --resource-type "Applications.Datastores/sqlDatabases" \
+  --parameters skuName=Basic \
+  --parameters skuTier=Basic
+
+  recipe from: https://github.com/radius-project/recipes/blob/main/azure/sqldatabases.bicep
+*/
+
 @description('The Radius Application ID. Injected automatically by the rad CLI.')
 param application string
 
@@ -112,7 +127,7 @@ resource gateway 'Applications.Core/gateways@2023-10-01-preview' = {
     application: application
     environment: environment
     hostname: {
-      fullyQualifiedHostname: 'gateway.beerrating.radius.local'
+      fullyQualifiedHostname: 'gateway.beerrating2.radius.local'
     }
     routes: [
       {

@@ -2,4 +2,6 @@
 alias k='kubectl'
 alias h='helm'
 alias kubectx='kubie ctx'
+alias kctx='kubie ctx'
 alias kubens='kubie ns'
+alias kns='kubie ns'

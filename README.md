@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository accompanies a session on building cloud-native .NET applications with [Radius](https://radapp.io) — without the YAML overload and without locking applications to a single cloud provider. Radius separates application definitions from infrastructure and deployment details by using abstract resource types such as SQL databases and Redis caches. This makes applications easier to develop, deploy, adapt, and move across environments.
+This repository accompanies a session on building cloud-native .NET applications with [Radius](https://radapp.io) without the YAML overload and without locking applications to a single cloud provider. Radius separates application definitions from infrastructure and deployment details by using abstract resource types such as SQL databases and Redis caches. This makes applications easier to develop, deploy, adapt, and move across environments.
 
 The workspace contains hands-on demos that cover the complete journey from a local development loop with KIND to running applications on Azure Kubernetes Service (AKS). It also includes infrastructure definitions for Azure, application manifests, and custom [Recipes](recipes/) that show how Radius resources can be implemented. Recipes act as reusable infrastructure templates while still giving teams full control over the underlying deployment.
 
@@ -111,9 +111,9 @@ Radius Recipes encapsulate the deployment of infrastructure used by a Radius app
 
 ### Overview
 
-| Recipe | File | Radius resource type | Deployment |
-| --- | --- | --- | --- |
-| Azure SQL Database | [`recipes/azure/sqldatabase.bicep`](recipes/azure/sqldatabase.bicep) | `Applications.Datastores/sqlDatabases` | Azure Resource Manager / Azure SQL |
+| Recipe | Resource | File | Deployment | Description |
+| --- | --- | --- | --- | --- |
+| Azure SQL Database | Applications.Datastores/sqlDatabases | [`recipes/azure/sqldatabase.bicep`](recipes/azure/sqldatabase.bicep) | Azure Resource Manager / Azure SQL | An Azure SQL server resource with a configurable SKU and backup storage redundancy. |
 
 ### Publish a recipe to Azure Container Registry
 

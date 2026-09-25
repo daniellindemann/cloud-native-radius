@@ -27,13 +27,13 @@ resource demo 'Applications.Core/containers@2023-10-01-preview' = {
     }
     connections: {
       redis: {
-        source: sqlDb.id
+        source: redis.id
       }
     }
   }
 }
 
-resource sqlDb 'Applications.Datastores/redisCaches@2023-10-01-preview' = {
+resource redis 'Applications.Datastores/redisCaches@2023-10-01-preview' = {
   name: 'redis'
   properties: {
     environment: environment

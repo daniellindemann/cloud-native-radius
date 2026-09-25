@@ -12,7 +12,22 @@ rad recipe register default \
   --parameters skuName=Basic \
   --parameters skuTier=Basic
 
-  recipe from: https://github.com/radius-project/recipes/blob/main/azure/sqldatabases.bicep
+rad recipe register default \
+  --environment azure \
+  --group azure \
+  --template-kind bicep \
+  --template-path "acrcnrhiqgue-hkevf9ergae4bfbv.azurecr.io/radius-recipes/sqldatabase:0.60.2" \
+  --resource-type "Applications.Datastores/sqlDatabases" \
+  --parameters skuName=Basic \
+  --parameters skuTier=Basic \
+  --parameters backupStorageRedundancy=Local
+
+recipe from: https://github.com/radius-project/recipes/blob/main/azure/sqldatabases.bicep
+
+unregister with:
+rad recipe unregister default \
+  --resource-type "Applications.Datastores/sqlDatabases"
+
 */
 
 @description('The Radius Application ID. Injected automatically by the rad CLI.')

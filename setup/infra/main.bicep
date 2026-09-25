@@ -72,24 +72,41 @@ module logAnalyticsWorkspaceModule 'modules/logAnalyticsWorkspace.bicep' = {
   }
 }
 
-/**********************************************************/
-/*                      AKS Cluster                       */
-/**********************************************************/
+// /**********************************************************/
+// /*                          ACR                           */
+// /**********************************************************/
 
-module aksCluster 'modules/aksCluster.bicep' = {
-  name: 'module-aksCluster'
+module acr 'modules/acr.bicep' = {
+  name: 'module-acr'
   scope: rg
   params: {
     location: location
     suffix: suffix
     tags: allTags
 
-    logAnalyticsWorkspaceId: logAnalyticsWorkspaceModule.outputs.id
-    kubernetesVersion: kubernetesVersion
-    systemNodeCount: systemNodeCount
-    systemVmSize: systemVmSize
+    skuName: 'Standard'
+    anonymousPullEnabled: true
   }
 }
+
+// /**********************************************************/
+// /*                      AKS Cluster                       */
+// /**********************************************************/
+
+// module aksCluster 'modules/aksCluster.bicep' = {
+//   name: 'module-aksCluster'
+//   scope: rg
+//   params: {
+//     location: location
+//     suffix: suffix
+//     tags: allTags
+
+//     logAnalyticsWorkspaceId: logAnalyticsWorkspaceModule.outputs.id
+//     kubernetesVersion: kubernetesVersion
+//     systemNodeCount: systemNodeCount
+//     systemVmSize: systemVmSize
+//   }
+// }
 
 /**********************************************************/
 /*                    Role Assignments                    */
@@ -99,6 +116,7 @@ module roleAssignments 'modules/roleAssignments.bicep' = {
   name: 'module-roleAssignments'
   scope: rg
   params: {
-    aksName: aksCluster.outputs.name
+    // aksName: aksCluster.outputs.name
+    acrName: acr.outputs.name
   }
 }

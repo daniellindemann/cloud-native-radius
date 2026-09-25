@@ -89,24 +89,24 @@ module acr 'modules/acr.bicep' = {
   }
 }
 
-// /**********************************************************/
-// /*                      AKS Cluster                       */
-// /**********************************************************/
+/**********************************************************/
+/*                      AKS Cluster                       */
+/**********************************************************/
 
-// module aksCluster 'modules/aksCluster.bicep' = {
-//   name: 'module-aksCluster'
-//   scope: rg
-//   params: {
-//     location: location
-//     suffix: suffix
-//     tags: allTags
+module aksCluster 'modules/aksCluster.bicep' = {
+  name: 'module-aksCluster'
+  scope: rg
+  params: {
+    location: location
+    suffix: suffix
+    tags: allTags
 
-//     logAnalyticsWorkspaceId: logAnalyticsWorkspaceModule.outputs.id
-//     kubernetesVersion: kubernetesVersion
-//     systemNodeCount: systemNodeCount
-//     systemVmSize: systemVmSize
-//   }
-// }
+    logAnalyticsWorkspaceId: logAnalyticsWorkspaceModule.outputs.id
+    kubernetesVersion: kubernetesVersion
+    systemNodeCount: systemNodeCount
+    systemVmSize: systemVmSize
+  }
+}
 
 /**********************************************************/
 /*                    Role Assignments                    */
@@ -116,7 +116,7 @@ module roleAssignments 'modules/roleAssignments.bicep' = {
   name: 'module-roleAssignments'
   scope: rg
   params: {
-    // aksName: aksCluster.outputs.name
+    aksName: aksCluster.outputs.name
     acrName: acr.outputs.name
   }
 }

@@ -1,6 +1,6 @@
 # Radius: Workspaces, Groups, Environments und Applications
 
-> Dieses Dokument wurde KI-generiert und sollte vor Verwendung fachlich geprüft werden.
+> Dieses Dokument wurde KI-generiert.
 
 ## Wie hängen Workspace, Environment, Group und Application zusammen?
 

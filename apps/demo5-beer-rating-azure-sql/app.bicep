@@ -36,7 +36,7 @@ var applicationName = last(split(application, '/'))
 var version = 10
 
 resource sqlDb 'Applications.Datastores/sqlDatabases@2023-10-01-preview' = {
-  name: 'sqlDb'
+  name: 'demo5-sqlDb'
   properties: {
     application: application
     environment: environment
@@ -44,7 +44,7 @@ resource sqlDb 'Applications.Datastores/sqlDatabases@2023-10-01-preview' = {
 }
 
 resource backend 'Applications.Core/containers@2023-10-01-preview' = {
-  name: 'backend'
+  name: 'demo5-backend'
   properties: {
     application: application
     environment: environment
@@ -80,7 +80,7 @@ resource backend 'Applications.Core/containers@2023-10-01-preview' = {
 }
 
 resource frontend 'Applications.Core/containers@2023-10-01-preview' = {
-  name: 'frontend'
+  name: 'demo5-frontend'
   properties: {
     application: application
     environment: environment
@@ -116,7 +116,7 @@ resource frontend 'Applications.Core/containers@2023-10-01-preview' = {
 }
 
 resource consoleQuotes 'Applications.Core/containers@2023-10-01-preview' = {
-  name: 'consoleQuotes'
+  name: 'demo5-consoleQuotes'
   properties: {
     application: application
     environment: environment
@@ -127,12 +127,12 @@ resource consoleQuotes 'Applications.Core/containers@2023-10-01-preview' = {
 }
 
 resource gateway 'Applications.Core/gateways@2023-10-01-preview' = {
-  name: 'gateway'
+  name: 'demo5-gateway'
   properties: {
     application: application
     environment: environment
     hostname: {
-      fullyQualifiedHostname: 'gateway.beerrating2.radius.local'
+      fullyQualifiedHostname: 'demo5-gateway.beerrating.radius.local'
     }
     routes: [
       {

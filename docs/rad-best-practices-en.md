@@ -1,6 +1,6 @@
 # Radius: Workspaces, Groups, Environments, and Applications
 
-> This document is AI generated and should be reviewed before use.
+> This document is AI generated.
 
 ## How do Workspace, Environment, Group, and Application relate?
 

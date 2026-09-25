@@ -30,3 +30,5 @@ if [ "$POST_CREATE_AUTO_START_CLOUD_PROVIDER_KIND" = "true" ]; then
 else
   echo "POST_CREATE_AUTO_START_CLOUD_PROVIDER_KIND is not set to true. Skipping cloud-provider-kind service start."
 fi
+
+echo "Post-create commands completed."

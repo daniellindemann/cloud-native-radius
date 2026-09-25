@@ -1,6 +1,12 @@
 # Cloud-native DevOps with Radius
 
-TODO: add introduction
+## Introduction
+
+This repository accompanies a session on building cloud-native .NET applications with [Radius](https://radapp.io) — without the YAML overload and without locking applications to a single cloud provider. Radius separates application definitions from infrastructure and deployment details by using abstract resource types such as SQL databases and Redis caches. This makes applications easier to develop, deploy, adapt, and move across environments.
+
+The workspace contains hands-on demos that cover the complete journey from a local development loop with KIND to running applications on Azure Kubernetes Service (AKS). It also includes infrastructure definitions for Azure, application manifests, and custom [Recipes](recipes/) that show how Radius resources can be implemented. Recipes act as reusable infrastructure templates while still giving teams full control over the underlying deployment.
+
+The examples are designed for .NET developers who want to build scalable applications while keeping infrastructure complexity manageable. They demonstrate how Radius tooling can simplify collaboration, support repeatable deployments, and provide greater flexibility across local Kubernetes and cloud environments.
 
 ## Local Environment - KIND
 

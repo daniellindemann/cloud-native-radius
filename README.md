@@ -21,6 +21,10 @@ The examples are designed for .NET developers who want to build scalable applica
 
 ### cloud-provider-kind service
 
+> **WARNING**:  
+> If you start the cloud-provider-kind, it provisions CRDs for Gateway API. After that, Radius init (`rad init`) and installation (`rad install kubernetes`) will not run proberly, because Radius tries to install the same CRDs via *helm*. That results in a conflict error.  
+> *So when running the rad setup, ensure to start cloud-provider-kind after `rad init` or `rad installation kubernetes`*
+
 [`cloud-provider-kind`](https://github.com/kubernetes-sigs/cloud-provider-kind) implements `LoadBalancer` services for KIND clusters and runs as a background service in the dev container (no systemd is available, so it is managed via a SysV init script).
 
 - Start: `sudo service cloud-provider-kind start`
@@ -71,6 +75,21 @@ Sign in to Azure and select the subscription to use:
 az login
 az account set --subscription <subscription-id-or-name>
 ```
+
+## Azure Environment - Service Principal
+
+To use Azure Backing Service, Radius requires a connection to Azure. The simples way to do this, is by creating a service principal.
+Create a service principal named **radius* with access on resource group *rg-cnr-resources*:
+
+```bash
+az ad sp create-for-rbac --name radius \
+    --role Owner \
+    --scope /subscriptions/63d3cb88-9621-46c0-b611-36e23c5b402d/resourceGroups/rg-cnr-resources
+```
+
+Use the service principal when connecting to Azure via `rad init --full`. After that, Radius can create Azure resources using the service principal.
+
+> The service principal is required for [*demo5-beer-rating-azure-sql*](apps/demo5-beer-rating-azure-sql/app.bicep)
 
 ### Deploy the environment
 
@@ -132,10 +151,8 @@ Here, `<registry-name>` is the name of the Azure Container Registry. The `--targ
 
 ### Register a recipe in Radius
 
-After publishing, register the recipe for the Radius environment and group
-created for your application. The values are not required to be `azure`; use
-the names of the environment and group you created for the Radius application.
-The following example registers the recipe from the Azure Container Registry
+After publishing, register the recipe for the Radius environment and group created for your application. The values are not required to be `azure`; use
+the names of the environment and group you created for the Radius application. The following example registers the recipe from the Azure Container Registry
 for the `Applications.Datastores/sqlDatabases` resource type:
 
 ```bash
@@ -165,3 +182,39 @@ rad recipe unregister default \
     --resource-type "Applications.Datastores/sqlDatabases"
 ```
 
+## Dev Environment - hosts file
+
+Some demos use specified fully qualified domain names (FQDNs) to access the applications. Add the following entries to your environment's `hosts` file. Each entry resolves a hostname to a specific IP address.
+
+You may need administrator or root privileges to edit the file. If the browser runs on the host operating system, update the host's `hosts` file. If the browser runs inside the dev container, update the container's `/etc/hosts` file instead. The address must point to the machine where the demo gateway is exposed.
+
+You can find the hosts file here:
+- Windows: `%SystemRoot%\System32\drivers\etc\hosts` (normally `C:\Windows\System32\drivers\etc\hosts`)
+- macOS: `/etc/hosts`
+- Linux: `/etc/hosts`
+
+Add these entries:
+
+```
+127.0.0.1       gateway.todolist.radius.local         # radius config for todo list
+127.0.0.1       demo4-gateway.beerrating.radius.local # radius config for beer rating
+127.0.0.1       demo5-gateway.beerrating.radius.local # radius config for beer rating
+```
+
+The entries configure local name resolution for the demo gateways:
+
+- `gateway.todolist.radius.local` resolves to the gateway used by the Todo List demo.
+- `demo4-gateway.beerrating.radius.local` resolves to the gateway used by the local Beer Rating demo.
+- `demo5-gateway.beerrating.radius.local` resolves to the gateway used by the Azure SQL Beer Rating demo.
+
+When a browser requests one of these hostnames, it connects to `127.0.0.1` and sends the hostname in the HTTP `Host` header. The gateway uses that hostname to select the corresponding application route. This avoids requiring a DNS server or a publicly registered domain.
+
+Keep the existing whitespace and comments optional; only the IP address and hostname are significant. Verify that the names resolve locally before opening a demo:
+
+```bash
+getent hosts gateway.todolist.radius.local
+getent hosts demo4-gateway.beerrating.radius.local
+getent hosts demo5-gateway.beerrating.radius.local
+```
+
+Each command should return `127.0.0.1`. On Windows, use `Resolve-DnsName` or `ping` instead of `getent`.

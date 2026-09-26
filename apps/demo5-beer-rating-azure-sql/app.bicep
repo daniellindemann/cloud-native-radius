@@ -1,6 +1,15 @@
 extension radius
 
 /*
+
+This app uses the Beer Rating demo application: https://github.com/daniellindemann/beer-rating-standalone
+Prebuild images can be found on Docker Hub:
+- Backend: https://hub.docker.com/r/daniellindemann/beer-rating-backend
+- Frontend: https://hub.docker.com/r/daniellindemann/beer-rating-frontend
+- Console Beer Quotes: https://hub.docker.com/r/daniellindemann/beer-rating-console-beerquotes
+
+----------------------------
+
 Ensure to register the Azure SQL recipe first:
 
 rad recipe register default \
@@ -13,7 +22,7 @@ rad recipe register default \
   --parameters skuTier=Basic \
   --parameters backupStorageRedundancy=Local
 
-unregister with, if required:
+Unregister with, if required:
 
 rad recipe unregister default \
   --resource-type "Applications.Datastores/sqlDatabases"

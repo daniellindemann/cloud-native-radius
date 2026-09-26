@@ -1,5 +1,15 @@
 extension radius
 
+/*
+
+This app uses the Beer Rating demo application: https://github.com/daniellindemann/beer-rating-standalone
+Prebuild images can be found on Docker Hub:
+- Backend: https://hub.docker.com/r/daniellindemann/beer-rating-backend
+- Frontend: https://hub.docker.com/r/daniellindemann/beer-rating-frontend
+- Console Beer Quotes: https://hub.docker.com/r/daniellindemann/beer-rating-console-beerquotes
+
+*/
+
 @description('The Radius Application ID. Injected automatically by the rad CLI.')
 param application string
 

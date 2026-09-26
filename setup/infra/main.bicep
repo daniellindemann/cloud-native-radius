@@ -20,8 +20,6 @@ var uniqueIdentifierLength = 6 // 6 is the used length for wgv projects
 var allTags = union(
   {
     ApplicationName: 'cloud-native-radius'
-    Maintainer: 'Daniel Lindemann'
-    Owner: 'Daniel Lindemann'
     Setup: 'bicep'
     TenantId: tenant().tenantId
     SubscriptionId: subscription().subscriptionId
@@ -43,7 +41,6 @@ var resourceGroup = 'rg-cloud-native-radius'
 var kubernetesVersion string = '1.36.3'
 var systemNodeCount int = 3
 var systemVmSize string = 'Standard_B2ms'
-
 
 /**********************************************************/
 /*                    Resource Groups                     */

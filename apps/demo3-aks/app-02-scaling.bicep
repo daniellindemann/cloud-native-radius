@@ -4,15 +4,9 @@ extension radius
 param application string
 
 resource demo 'Applications.Core/containers@2023-10-01-preview' = {
-  name: 'demo'
+  name: 'demo3-scaling'
   properties: {
     application: application
-    extensions: [
-      {
-        kind: 'manualScaling'
-        replicas: 3
-      }
-    ]
     container: {
       image: 'ghcr.io/radius-project/samples/demo:latest'
       ports: {
@@ -21,6 +15,12 @@ resource demo 'Applications.Core/containers@2023-10-01-preview' = {
         }
       }
     }
+    extensions: [
+      {
+        kind: 'manualScaling'
+        replicas: 3
+      }
+    ]
   }
 }
 

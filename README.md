@@ -14,6 +14,10 @@ The examples are designed for .NET developers who want to build scalable applica
 
 > In a dev container the kind cluster is automatically provisioned.
 
+```
+kind create cluster --config .devcontainer/kind/config.yaml
+```
+
 ### Forward KIND cluster services
 
 - Do a port-forward in VS Code to `IP:Port` or
@@ -141,7 +145,7 @@ Recipes are published as Bicep OCI artifacts. The helper script [`recipes/push-r
 Example for publishing the SQL recipe:
 
 ```bash
-./recipes/push-recipe-to-acr.sh \
+recipes/push-recipe-to-acr.sh \
     --acr <registry-name>.azurecr.io \
     --file recipes/azure/sqldatabase.bicep \
     --target br:<registry-name>.azurecr.io/radius-recipes/sqldatabase:0.60.2
@@ -218,3 +222,7 @@ getent hosts demo5-gateway.beerrating.radius.local
 ```
 
 Each command should return `127.0.0.1`. On Windows, use `Resolve-DnsName` or `ping` instead of `getent`.
+
+## Demos
+
+Demo instructions: [Demos.md](Demos.md)

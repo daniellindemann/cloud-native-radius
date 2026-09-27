@@ -8,6 +8,14 @@ The workspace contains hands-on demos that cover the complete journey from a loc
 
 The examples are designed for .NET developers who want to build scalable applications while keeping infrastructure complexity manageable. They demonstrate how Radius tooling can simplify collaboration, support repeatable deployments, and provide greater flexibility across local Kubernetes and cloud environments.
 
+## Project Structure
+
+- [`apps/`](apps/) contains the Radius application definitions for the Todo List, AKS, and Beer Rating demos. Each demo folder includes its Bicep manifest and Bicep configuration.
+- [`recipes/`](recipes/) contains reusable Radius Recipes, including the Azure SQL Database recipe and the script that publishes recipes to Azure Container Registry.
+- [`setup/`](setup/) provides the Azure infrastructure deployment files, KIND reset script, and Radius configuration helper scripts.
+- [`docs/`](docs/) contains troubleshooting information and Radius best practices in English and German.
+- [`Demos.md`](Demos.md) contains the instructions for running the individual demos.
+
 ## Local Environment - KIND
 
 ## Setup
@@ -222,7 +230,3 @@ getent hosts demo5-gateway.beerrating.radius.local
 ```
 
 Each command should return `127.0.0.1`. On Windows, use `Resolve-DnsName` or `ping` instead of `getent`.
-
-## Demos
-
-Demo instructions: [Demos.md](Demos.md)

@@ -16,6 +16,16 @@ The examples are designed for .NET developers who want to build scalable applica
 - [`docs/`](docs/) contains troubleshooting information and Radius best practices in English and German.
 - [`Demos.md`](Demos.md) contains the instructions for running the individual demos.
 
+## Required Tools
+
+- [Docker](https://www.docker.com/products/docker-desktop/), runs containers
+- [KIND](https://kind.sigs.k8s.io/), creates local Kubernetes development environments
+- [kubectl](https://kubernetes.io/docs/tasks/tools/), managing Kubernetes resources
+- [Radius CLI](https://radapp.io/), deploys Radius applications
+- [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli), manages Azure resources
+- [PowerShell](https://learn.microsoft.com/powershell/scripting/install/installing-powershell), runs Powershell scripts
+- A Bash compatible shell runs helper scripts.
+
 ## Local Environment - KIND
 
 ## Setup

@@ -4,6 +4,6 @@ alias h='helm'
 alias kubiectx='kubie ctx'
 alias kubectx='kubie ctx'
 alias kctx='kubie ctx'
-alias kubiens='kubie ns
+alias kubiens='kubie ns'
 alias kubens='kubie ns'
 alias kns='kubie ns'

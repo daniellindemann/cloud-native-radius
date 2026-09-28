@@ -26,7 +26,10 @@
     "ghcr.io/stuartleeks/dev-container-features/azure-cli-persistence:0": {},
     "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
     "ghcr.io/radius-project/devcontainer-features/radcli:0": {
-      "version": "latest"
+      // pin to specific version 0.60.2 due to demo purposes
+      // Ensure to update on new environments
+      // see https://github.com/radius-project/radius/releases
+      "version": "0.60.2"
     },
     "ghcr.io/devcontainers-extra/features/kind:1": {
       "version": "latest"

@@ -35,6 +35,14 @@ param application string
 @description('The Radius Environment ID. Injected automatically by the rad CLI.')
 param environment string
 
+@description('''Defaults to `demo5-gateway.beerrating.radius.local`  
+*OrbStack with Devcontainer Info*:  
+On MacOS with OrbStack environment, this it's required to set it to the OrbStack Ingress FQDN, that is configured by default.
+OrbStack Ingress fetches automatically requests on typical app ports, like 80 and 443.
+Use `demo5-gateway.devcontainer_cloud-native-radius.orb.local` instead.
+''')
+param hostFqdn string = 'demo5-gateway.beerrating.radius.local'
+
 @description('The name of the environment extracted from the environment ID.')
 var environmentName = last(split(environment, '/'))
 
@@ -141,7 +149,7 @@ resource gateway 'Applications.Core/gateways@2023-10-01-preview' = {
     application: application
     environment: environment
     hostname: {
-      fullyQualifiedHostname: 'demo5-gateway.beerrating.radius.local'
+      fullyQualifiedHostname: hostFqdn
     }
     routes: [
       {

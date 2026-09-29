@@ -4,3 +4,4 @@ apps/demo1-todolist/bicepconfig.json
 
 # Ignore demo2 files
 apps/demo2-todolist-db/app.bicep
+apps/demo2-todolist-db/bicepconfig.json

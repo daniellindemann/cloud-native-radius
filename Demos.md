@@ -7,7 +7,7 @@
 - Azure
     - Azure Ressourcen: [Azure Environment - AKS + ACR](README.md#azure-environment---aks--acr)
     - Azure Service Principal: [Azure Environment - Service Principal](README.md#azure-environment---service-principal)
-- Radius Recipes in Container Registry bereitstellen
+- [Radius Recipes in Container Registry bereitstellen](README.md#publish-a-recipe-to-azure-container-registry)
     - Bereitgestellte ACR aus Azure Setup benutzen
     - Script [recipes/push-recipe-to-acr.sh](recipes/push-recipe-to-acr.sh) zum hochladen des *sqldatabase* Recipe für Azure SQL benutzen
 
@@ -252,6 +252,6 @@
 
 ## Clean up
 
-- Kind Cluster Reset: `setup/kind/reset/kind.sh`
-- Radius Config Reset: `setup/rad/clear-rad-config.sh
+- Kind Cluster Reset: `setup/kind/reset-kind.sh`
+- Radius Config Reset: `setup/rad/clear-rad-config.sh`
 - Azure Resourcen löschen: `az group rg-cloud-native-radius`
